@@ -1,0 +1,71 @@
+###
+POST http://localhost:3000/funcionario
+content-type: application/json
+
+{
+    "nome": "benicio",
+    "email": "benicio@gmail.com",
+    "senha": "123"
+}
+
+###
+# @name loginReq
+POST http://localhost:3000/login
+content-type: application/json
+
+{
+    "email": "benicio@gmail.com",
+    "senha": "123"
+}
+
+###
+### ========== cadastrar obra =========
+
+POST http://localhost:3000/obra
+content-type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "CNPJ": "215796135",
+    "nome": "obra no quintal do seu juca"
+}
+
+###
+
+
+
+
+### ========== cadastrar material =========
+
+POST http://localhost:3000/material
+content-type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "idObra": 1,
+    "descricao": "tijolo",
+    "categoria": "materiais de estrutura",
+    "quantidade": 300,
+    "codLote": "1234-aafs"
+}
+
+###
+
+
+
+
+
+### ========== cadastrar movimento =========
+
+POST http://localhost:3000/movimento
+content-type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "idMaterial": 1,
+    "tipo": "ENTRADA",
+    "quantidade": 15,
+    "data": "2026-05-27"
+}
+
+###
